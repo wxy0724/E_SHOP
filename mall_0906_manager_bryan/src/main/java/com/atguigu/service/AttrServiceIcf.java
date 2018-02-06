@@ -10,5 +10,7 @@ public interface AttrServiceIcf {
 
 	List<OBJECT_T_MALL_ATTR> get_attr_by_class_2_id(int flbh2);
 
+	List<Integer> get_list_value_id_by_attr_id(int i);
+
 
 }

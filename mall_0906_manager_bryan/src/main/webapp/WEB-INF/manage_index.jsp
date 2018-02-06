@@ -86,6 +86,18 @@
 					</li>
 				</ul>
 		</div>
+		
+		<div title="缓存管理" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
+			<ul class="easyui-tree">
+					<li>
+						<span>缓存管理</span>
+						<ul>
+							<li><a href="javascript:add_tab('goto_cache.do','商品缓存管理');">商品缓存管理</a></li>
+						</ul>
+					</li>
+				</ul>
+		</div>
+		
 		<div title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
 		</div>
 		</div>

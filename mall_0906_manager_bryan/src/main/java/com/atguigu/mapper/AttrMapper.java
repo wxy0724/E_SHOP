@@ -12,4 +12,6 @@ public interface AttrMapper {
 	void insert_value(Map<String, Object> map2);
 
 	List<OBJECT_T_MALL_ATTR> select_attr_by_class_2_id(int flbh2);
+
+	List<Integer> select_list_value_id_by_attr_id(int i);
 }

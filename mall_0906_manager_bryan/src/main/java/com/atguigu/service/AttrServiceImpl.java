@@ -42,5 +42,10 @@ public class AttrServiceImpl implements AttrServiceIcf {
 		return attrMapper.select_attr_by_class_2_id(flbh2);
 	}
 
+	@Override
+	public List<Integer> get_list_value_id_by_attr_id(int i) {
+		return attrMapper.select_list_value_id_by_attr_id(i);
+	}
+
 
 }
