@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyz.mapper.SkuListMapper">
+	<select id="select_sku_list_by_class_id_2" parameterType="int" resultMap="select_sku_list_by_class2_map">
+		select sku.id as sku_id , spu.id as spu_id , tm.id as tm_id ,
+		sku.*,spu.*,tm.* from
+		t_mall_sku sku,
+		t_mall_product spu,
+		t_mall_trade_mark tm
+		where
+		sku.shp_id = spu.Id AND
+		spu.pp_id = tm.Id and
+		spu.flbh2 = #{flbh2}
+	</select>
+	
+	<resultMap id="select_sku_list_by_class2_map" type="com.xyz.bean.MODEL_T_MALL_SKU" autoMapping="true">
+		<result column="sku_id" property="id"/>
+		<association property="spu" javaType="com.xyz.bean.T_MALL_PRODUCT" autoMapping="true">
+			<result column="spu_id" property="id" />
+		</association>
+		<association property="tm" javaType="com.xyz.bean.T_MALL_TRADE_MARK"
+			autoMapping="true">
+			<result column="tm_id" property="id" />
+		</association>
+	</resultMap>
+	
+	
+	<select id="select_sku_detail" parameterType="int" resultMap="select_sku_detail_by_sku_id">
+	select attr.shxm_mch as
+		attrName,CONCAT(val.shxzh,val.shxzh_mch) as
+		valueName ,sku.id as sku_id
+		,spu.id as
+		spu_id,img.Id as
+		img_id,spu.*,img.*,sku.* from
+		t_mall_product
+		spu,
+		t_mall_sku
+		sku,
+		t_mall_product_image img,
+		t_mall_sku_attr_value av,
+		t_mall_attr
+		attr,
+		t_mall_value val
+		where spu.Id = sku.shp_id AND
+		spu.Id = img.shp_id AND
+		sku.id = av.sku_id AND
+		av.shxm_id = attr.id AND
+		av.shxzh_id = val.id and 
+		attr.id = val.shxm_id and
+		sku.id = #{sku_id}
+	</select>
+	<resultMap type="com.xyz.bean.DETAIL_T_MALL_SKU" id="select_sku_detail_by_sku_id"
+	autoMapping="true">
+		<result column="sku_id" property="id"/>
+		<association property="spu" javaType="com.xyz.bean.T_MALL_PRODUCT" autoMapping="true">
+			<result column="spu_id" property="id"/>
+		</association>
+		<collection property="list_image" ofType="com.xyz.bean.T_MALL_PRODUCT_IMAGE" autoMapping="true">
+			<result column="img_id" property="id"/>
+		</collection>
+		<collection property="list_av_name" ofType="com.xyz.bean.OBJECT_T_MALL_AV_NAME" autoMapping="true">
+		</collection>
+	</resultMap>
+	
+	<select id="select_sku_list_by_spu_id" parameterType="int" resultType="com.xyz.bean.T_MALL_SKU">
+		select * from t_mall_sku where shp_id = #{spu.id }
+	</select>
+	
+	<!-- <resultMap type="com.xyz.bean.MODEL_T_MALL_SKU" id="select_sku_list_by_class2_map"
+		autoMapping="true">
+		<result column="sku_id" property="id" />
+		<association property="spu" javaType="com.atguigu.bean.T_MALL_PRODUCT"
+			autoMapping="true">
+			<result column="spu_id" property="id" />
+		</association>
+		<association property="tm" javaType="com.atguigu.bean.T_MALL_TRADE_MARK"
+			autoMapping="true">
+			<result column="tm_id" property="id" />
+		</association>
+	</resultMap> -->
+	
+	
+	<!-- <select id="select_sku_list_by_attr" parameterType="Map" resultMap="select_sku_list_by_class2_map">
+		select sku.id as sku_id , spu.id as spu_id , tm.id as tm_id ,
+		sku.*,spu.*,tm.* from
+		t_mall_sku sku,
+		t_mall_product spu,
+		t_mall_trade_mark tm
+		where
+		sku.shp_id = spu.Id AND
+		spu.pp_id = tm.Id and
+		spu.flbh2 = #{flbh2}
+		${sql}
+		${order}
+	</select>
+	
+	<select id="select_sku_detail" parameterType="int" resultMap="select_sku_detail_by_sku_id">
+	select attr.shxm_mch as
+		attrName,CONCAT(val.shxzh,val.shxzh_mch) as
+		valueName ,sku.id as sku_id
+		,spu.id as
+		spu_id,img.Id as
+		img_id,spu.*,img.*,sku.* from
+		t_mall_product
+		spu,
+		t_mall_sku
+		sku,
+		t_mall_product_image img,
+		t_mall_sku_attr_value av,
+		t_mall_attr
+		attr,
+		t_mall_value val
+		where spu.Id = sku.shp_id AND
+		spu.Id = img.shp_id AND
+		sku.id = av.sku_id AND
+		av.shxm_id = attr.id AND
+		av.shxzh_id = val.id and 
+		attr.id = val.shxm_id and
+		sku.id = #{sku_id}
+	</select>
+	<resultMap type="com.atguigu.bean.DETAIL_T_MALL_SKU" id="select_sku_detail_by_sku_id"
+	autoMapping="true">
+		<result column="sku_id" property="id"/>
+		<association property="spu" javaType="com.xyz.bean.T_MALL_PRODUCT" autoMapping="true">
+			<result column="spu_id" property="id"/>
+		</association>
+		<collection property="list_image" ofType="com.xyz.bean.T_MALL_PRODUCT_IMAGE" autoMapping="true">
+			<result column="img_id" property="id"/>
+		</collection>
+		<collection property="list_av_name" ofType="com.xyz.bean.OBJECT_T_MALL_AV_NAME" autoMapping="true">
+		</collection>
+	</resultMap>
+	
+	
+	<select id="select_sku_list_by_spu_id" parameterType="int" resultType="com.atguigu.bean.T_MALL_SKU">
+		select * from t_mall_sku where shp_id = #{spu.id }
+	</select> -->
+	
+</mapper>
