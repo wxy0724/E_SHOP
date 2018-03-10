@@ -39,7 +39,7 @@ function getCookie(key){
 		请  <span id = "user_name" style="color: red">${yh_mch }</span>  <a href="gotoLogin.do">登录</a>
 	</c:if>
 	<c:if test="${not empty user }">
-		欢迎${user.yh_mch }&nbsp;&nbsp;&nbsp;<a href="Logout.do">退出登录</a>&nbsp;&nbsp;&nbsp;<a href="">购物车</a>
+		欢迎${user.yh_mch }&nbsp;&nbsp;&nbsp;<a href="Logout.do">退出登录</a>&nbsp;&nbsp;&nbsp;
 	</c:if>
 	
 </body>

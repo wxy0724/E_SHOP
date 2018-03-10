@@ -2,6 +2,8 @@ package com.xyz.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -12,14 +14,19 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.xyz.bean.T_MALL_SHOPPINGCAR;
 import com.xyz.bean.T_MALL_USER_ACCOUNT;
 import com.xyz.service.LoginServiceInf;
+import com.xyz.service.ShoppingCartServiceInf;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	LoginServiceInf loginServiceInf;
+	
+	@Autowired
+	ShoppingCartServiceInf shoppingCartServiceInf;
 	
 	@RequestMapping("/gotoLogin")
 	public String gotoLogin() {
@@ -29,12 +36,13 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(HttpServletResponse response,HttpSession session,T_MALL_USER_ACCOUNT user) {
 		T_MALL_USER_ACCOUNT select_user = loginServiceInf.selectUser(user);
-		
+		List<T_MALL_SHOPPINGCAR> list_cart = new ArrayList<>();
 		if (select_user == null) {
 			return "gotoLogin";
 		}else {
-			session.setAttribute("user", user);
-			
+			session.setAttribute("user", select_user);
+			list_cart = shoppingCartServiceInf.get_shopping_cart(select_user);
+			session.setAttribute("list_cart_session", list_cart);
 			Cookie cookie;
 			Cookie cookie2;
 			try {
@@ -50,7 +58,7 @@ public class LoginController {
 				e.printStackTrace();
 			}
 		}
-		
+		session.setAttribute("list_cart_session", list_cart);
 		return "redirect:/index.do";
 	}
 	

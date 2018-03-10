@@ -5,9 +5,9 @@
 <html>
 <head>
 <base href="${pageContext.request.contextPath}/"/> 
-<title>Insert title here</title>
-<script type="text/javascript" src="js/jquery-1.7.2-min.js"></script>
+<title>商城首页</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	
 	$(function (){

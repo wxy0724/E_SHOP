@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,6 +23,65 @@ public class ShoppingCartController {
 
 	@Autowired
 	ShoppingCartServiceInf shoppingCartServiceInf;
+	
+	@RequestMapping("/change_cart_status")
+	public String change_cart_status(int sku_id,String sfxzh,HttpServletResponse response,HttpSession session,ModelMap map,
+			@CookieValue(value="list_cart_cookie",required=false)String list_cart_cookie) {
+		
+		T_MALL_USER_ACCOUNT user = (T_MALL_USER_ACCOUNT) session.getAttribute("user");
+		List<T_MALL_SHOPPINGCAR> list_cart = new ArrayList<>();
+		if (user == null) {
+			list_cart = (List<T_MALL_SHOPPINGCAR>) MyJsonUtil.json_to_list(list_cart_cookie, T_MALL_SHOPPINGCAR.class);
+		}else {
+			list_cart = (List<T_MALL_SHOPPINGCAR>) session.getAttribute("list_cart_session");
+		}
+		
+		for (int i = 0; i < list_cart.size(); i++) {
+			if (list_cart.get(i).getSku_id()==sku_id) {
+				list_cart.get(i).setShfxz(sfxzh);
+				if (user != null) {
+					shoppingCartServiceInf.updateShoppingCart(list_cart.get(i));
+				}else {
+					//覆盖Cookie
+					Cookie cookie = new Cookie("list_cart_cookie", MyJsonUtil.list_to_json(list_cart));
+					cookie.setMaxAge(60 * 60 * 24 * 7);
+					response.addCookie(cookie);
+				}
+			}
+		}
+		
+		map.put("list_cart",list_cart);
+		
+		return "sale_cart_list_inner";
+	}
+	
+	@RequestMapping("/goto_cart_list")
+	public String goto_cart_list(HttpSession session,ModelMap map,
+			@CookieValue(value="list_cart_cookie",required=false)String list_cart_cookie) {
+		T_MALL_USER_ACCOUNT user = (T_MALL_USER_ACCOUNT) session.getAttribute("user");
+		List<T_MALL_SHOPPINGCAR> list_cart = new ArrayList<>();
+		if (user == null) {
+			list_cart = (List<T_MALL_SHOPPINGCAR>) MyJsonUtil.json_to_list(list_cart_cookie, T_MALL_SHOPPINGCAR.class);
+		}else {
+			list_cart = (List<T_MALL_SHOPPINGCAR>) session.getAttribute("list_cart_session");
+		}
+		map.put("list_cart",list_cart);
+		return "sale_cart_list";
+	}
+	
+	@RequestMapping("/get_miniCart")
+	public String get_miniCart(HttpSession session,ModelMap map,
+			@CookieValue(value="list_cart_cookie",required=false)String list_cart_cookie) {
+		T_MALL_USER_ACCOUNT user = (T_MALL_USER_ACCOUNT) session.getAttribute("user");
+		List<T_MALL_SHOPPINGCAR> list_cart = new ArrayList<>();
+		if (user == null) {
+			list_cart = (List<T_MALL_SHOPPINGCAR>) MyJsonUtil.json_to_list(list_cart_cookie, T_MALL_SHOPPINGCAR.class);
+		}else {
+			list_cart = (List<T_MALL_SHOPPINGCAR>) session.getAttribute("list_cart_session");
+		}
+		map.put("list_cart",list_cart);
+		return "sale_miniCart_list_inner";
+	}
 	
 	@RequestMapping("/add_cart")
 	public String add_cart(HttpSession session,T_MALL_SHOPPINGCAR cart,HttpServletResponse response,
