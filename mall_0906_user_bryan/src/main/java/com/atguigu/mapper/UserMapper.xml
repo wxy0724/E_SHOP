@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="register" parameterType="com.atguigu.bean.T_MALL_USER_ACCOUNT" 
-	useGeneratedKeys="true"  keyColumn="id" keyProperty="id" >
+	useGeneratedKeys="true" keyColumn="id" keyProperty="id">
 		insert into t_mall_user_account
 		(yh_mch,yh_nch,yh_mm,yh_xm,yh_shjh,yh_yx) 
 		values

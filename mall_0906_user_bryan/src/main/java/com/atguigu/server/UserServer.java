@@ -15,4 +15,7 @@ public interface UserServer {
 	
 	//注册register
 	int register(T_MALL_USER_ACCOUNT user);
+	
+	//查找
+	T_MALL_USER_ACCOUNT selectUser(T_MALL_USER_ACCOUNT user);
 }

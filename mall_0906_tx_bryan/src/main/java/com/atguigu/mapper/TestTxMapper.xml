@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mapper.TestTxMapper">
+	<!-- long select_kc_for_update(int sku_id) -->
+	<select id="select_kc_for_update" parameterType="int"
+		resultType="long">
+		Select kc from t_mall_sku where id = #{sku_id}
+		for
+		update
+	</select>
+
+	<!-- void update_kc(T_MALL_ORDER_INFO t_MALL_ORDER_INFO) -->
+	<update id="update_kc" parameterType="com.atguigu.bean.T_MALL_ORDER_INFO">
+		update t_mall_sku set kc =
+		kc - #{sku_shl} ,sku_xl = sku_xl + #{sku_shl}
+		where id = #{sku_id}
+	</update>
+
+</mapper>

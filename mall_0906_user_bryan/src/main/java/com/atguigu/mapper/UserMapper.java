@@ -7,5 +7,5 @@ public interface UserMapper {
 	T_MALL_USER_ACCOUNT selectUser(T_MALL_USER_ACCOUNT user);
 
 	int register(T_MALL_USER_ACCOUNT user);
-
+	
 }

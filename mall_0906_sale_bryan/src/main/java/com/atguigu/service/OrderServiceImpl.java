@@ -1,6 +1,5 @@
 package com.atguigu.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.atguigu.bean.OBJECT_T_MALL_FLOW;
 import com.atguigu.bean.OBJECT_T_MALL_ORDER;
 import com.atguigu.bean.T_MALL_ADDRESS;
-import com.atguigu.bean.T_MALL_FLOW;
 import com.atguigu.bean.T_MALL_ORDER_INFO;
 import com.atguigu.exception.OverSaleException;
 import com.atguigu.mapper.OrderMapper;

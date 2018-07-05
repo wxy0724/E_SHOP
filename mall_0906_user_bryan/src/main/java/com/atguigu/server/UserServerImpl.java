@@ -38,7 +38,13 @@ public class UserServerImpl implements UserServer {
 
 	@Override
 	public int register(T_MALL_USER_ACCOUNT user) {
-		return userServiceInf.register(user);
+		int count = userServiceInf.register(user);
+		return count;
+	}
+
+	@Override
+	public T_MALL_USER_ACCOUNT selectUser(T_MALL_USER_ACCOUNT user) {
+		return userServiceInf.selectUser(user);
 	}
 	
 

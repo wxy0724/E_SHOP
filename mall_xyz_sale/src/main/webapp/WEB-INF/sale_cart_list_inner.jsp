@@ -24,5 +24,9 @@
 		${cart.tjshl}
 		<br />
 	</c:forEach>
+	总价格：${sum }
+	<form action="check_order.do" method="post">
+		<input type="submit" value="结算"/>
+	</form>
 </body>
 </html>

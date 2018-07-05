@@ -1,6 +1,7 @@
 package com.xyz.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xyz.bean.DETAIL_T_MALL_SKU;
 import com.xyz.bean.MODEL_T_MALL_SKU;
@@ -13,5 +14,7 @@ public interface SkuListMapper {
 	public DETAIL_T_MALL_SKU select_sku_detail(int sku_id);
 
 	public List<T_MALL_SKU> select_sku_list_by_spu_id(int spu_id);
+
+	public List<MODEL_T_MALL_SKU> select_sku_list_by_attr(Map<String, Object> map);
 
 }

@@ -60,7 +60,7 @@
 		<constructor-arg value="logQueue" />
 	</bean>
 	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
-		<constructor-arg value="topic" />
+		<constructor-arg value="logTopic" />
 	</bean>
 
 	<bean id="myMessageListener" class="com.atguigu.message.listener.MyMessageListener" />

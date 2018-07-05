@@ -86,4 +86,10 @@ public class T_MALL_USER_ACCOUNT {
 		this.yh_tx = yh_tx;
 	}
 
+	@Override
+	public String toString() {
+		return "T_MALL_USER_ACCOUNT [id=" + id + ", yh_mch=" + yh_mch + ", yh_nch=" + yh_nch + ", yh_mm=" + yh_mm
+				+ ", yh_xm=" + yh_xm + ", yh_shjh=" + yh_shjh + ", yh_yx=" + yh_yx + ", yh_tx=" + yh_tx + "]";
+	}
+	
 }

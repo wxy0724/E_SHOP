@@ -18,7 +18,7 @@
 	<jsp:include page="sale_attr_list_inner.jsp"></jsp:include>
 	<hr>
 	<div id="sku_list_inner">
-	<jsp:include page="sale_sku_list_inner.jsp"></jsp:include>
+		<jsp:include page="sale_sku_list_inner.jsp"></jsp:include>
 	</div>
 </body>
 </html>

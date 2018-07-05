@@ -14,7 +14,6 @@
 </head>
 <body>
 
-	<h2>商品列表</h2>
 	<div class="Sbox">
 		<c:forEach items="${list_sku }" var="sku">
 			<div class="list">

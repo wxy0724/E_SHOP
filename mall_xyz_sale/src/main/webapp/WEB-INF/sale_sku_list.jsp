@@ -18,6 +18,8 @@
 	<jsp:include page="sale_attr_list_inner.jsp"></jsp:include>
 	<hr/>
 	商品列表:<br/>
-	<jsp:include page="sale_sku_list_inner.jsp"></jsp:include>
+	<div id="sku_list_inner">
+		<jsp:include page="sale_sku_list_inner.jsp"></jsp:include>
+	</div>
 </body>
 </html>

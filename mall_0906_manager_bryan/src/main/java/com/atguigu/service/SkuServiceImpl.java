@@ -15,21 +15,21 @@ import com.atguigu.mapper.SkuMapper;
 public class SkuServiceImpl implements SkuServiceInf {
 	
 	@Autowired
-	SkuMapper skumapper;
+	SkuMapper skuMapper;
 	
 	@Override
 	public void save_sku(T_MALL_SKU t_mall_sku, MODEL_T_MALL_SKU_ATTR_VALUE t_mall_sku_list) {
 		List<T_MALL_SKU_ATTR_VALUE> list = t_mall_sku_list.getT_mall_sku_attr_val_list();
 		
 		
-		skumapper.insertSku(t_mall_sku);
+		skuMapper.insertSku(t_mall_sku);
 		
 		Map<String,Object> map = new HashMap<>();
 		map.put("sku_id", t_mall_sku.getId());
 		map.put("shp_id", t_mall_sku.getShp_id());
 		map.put("list", list);
 		
-		skumapper.insertsku_attr(map);
+		skuMapper.insertsku_attr(map);
 	}
 
 }

@@ -82,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap> -->
 	
 	
-	<!-- <select id="select_sku_list_by_attr" parameterType="Map" resultMap="select_sku_list_by_class2_map">
+	<select id="select_sku_list_by_attr" parameterType="Map" resultMap="select_sku_list_by_class2_map">
 		select sku.id as sku_id , spu.id as spu_id , tm.id as tm_id ,
 		sku.*,spu.*,tm.* from
 		t_mall_sku sku,
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${order}
 	</select>
 	
-	<select id="select_sku_detail" parameterType="int" resultMap="select_sku_detail_by_sku_id">
+	<!-- <select id="select_sku_detail" parameterType="int" resultMap="select_sku_detail_by_sku_id">
 	select attr.shxm_mch as
 		attrName,CONCAT(val.shxzh,val.shxzh_mch) as
 		valueName ,sku.id as sku_id

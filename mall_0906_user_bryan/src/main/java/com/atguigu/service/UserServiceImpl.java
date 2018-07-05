@@ -20,7 +20,6 @@ public class UserServiceImpl implements UserServiceInf {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -37,6 +36,11 @@ public class UserServiceImpl implements UserServiceInf {
 	public int register(T_MALL_USER_ACCOUNT user) {
 		MyRoutingDataSource.setKey("2");
 		return userMapper.register(user);
+	}
+
+	@Override
+	public T_MALL_USER_ACCOUNT selectUser(T_MALL_USER_ACCOUNT user) {
+		return userMapper.selectUser(user);
 	}
 	
 	

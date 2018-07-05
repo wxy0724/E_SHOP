@@ -45,6 +45,27 @@
 		<property name="basePackage" value="com.xyz.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
 	</bean>
+	
+	<!-- jsm消息工厂 -->
+	<bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616"></property>
+	</bean>
+	
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<!-- 产生JMS Connection的ConnectionFactory -->
+		<property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+	</bean>
+	
+	<!-- 执行消息任务的模板 -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+	</bean>
+	<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="logQueue"/>
+	</bean>
+	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="logTopic"/>
+	</bean>
 
 
 </beans>

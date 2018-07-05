@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		spu.pp_id = tm.Id and
 		spu.flbh2 = #{flbh2}
 	</select>
-
+	
 	<resultMap type="com.atguigu.bean.MODEL_T_MALL_SKU" id="select_sku_list_by_class2_map"
 		autoMapping="true">
 		<result column="sku_id" property="id" />

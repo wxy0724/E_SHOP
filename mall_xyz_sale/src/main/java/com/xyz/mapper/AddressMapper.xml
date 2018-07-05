@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyz.mapper.AddressMapper">
+	<!-- select_addresses_by_user_id(T_MALL_USER_ACCOUNT user) -->
+	<select id="select_addresses_by_user_id" parameterType="com.xyz.bean.T_MALL_USER_ACCOUNT"
+	resultType="com.xyz.bean.T_MALL_ADDRESS">
+		select * from t_mall_address where yh_id = #{id}
+	</select>
+	
+	<!-- T_MALL_ADDRESS select_addresses_by_id(int address_id) -->
+	<select id="select_addresses_by_id" parameterType="int" resultType="com.xyz.bean.T_MALL_ADDRESS">
+		select * from t_mall_address where id = #{id}
+	</select>
+	
+	<!-- insert_address(T_MALL_ADDRESS address) -->
+	<insert id="insert_address" parameterType="com.xyz.bean.T_MALL_ADDRESS" useGeneratedKeys="true">
+		insert into t_mall_address
+		( yh_dz,yh_id,shjr,lxfsh )
+		values
+		(#{yh_dz},#{yh_id},#{shjr},#{lxfsh})
+	</insert>
+</mapper>

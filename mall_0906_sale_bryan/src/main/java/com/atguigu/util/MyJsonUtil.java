@@ -20,7 +20,7 @@ public class MyJsonUtil {
 		String json = gson.toJson(t);
 		
 		try {
-			json=URLDecoder.decode(json,"utf_8");
+			json=URLDecoder.decode(json,"utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
